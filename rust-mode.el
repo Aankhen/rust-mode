@@ -626,9 +626,13 @@ match data if found. Returns nil if not within a Rust string."
   '("eprint"
     "eprintln"
     "format"
+    "format_args"
+    "panic"
     "print"
-    "println")
-  "List of builtin Rust macros for string formatting used by `rust-mode-font-lock-keywords'. (`write!' is handled separately.)")
+    "println"
+    "unreachable"
+    "unimplemented")
+  "List of builtin Rust macros that take a format string as their first argument. Used by `rust-mode-font-lock-keywords'.")
 
 (defvar rust-formatting-macro-opening-re
   "[[:space:]]*[({[][[:space:]]*"
