@@ -2216,6 +2216,50 @@ fn main() {
      "\"" font-lock-string-face
      "/* " font-lock-comment-delimiter-face
      "no-op */" font-lock-comment-face))
+  ;; format_args
+  (rust-test-font-lock
+   "format_args!(\"abcd {0} efgh {1}\", foo, bar); { /* no-op */ }"
+   '("format_args!" rust-builtin-formatting-macro-face
+     "\"abcd " font-lock-string-face
+     "{0}" rust-string-interpolation-face
+     " efgh " font-lock-string-face
+     "{1}" rust-string-interpolation-face
+     "\"" font-lock-string-face
+     "/* " font-lock-comment-delimiter-face
+     "no-op */" font-lock-comment-face))
+  ;; panic
+  (rust-test-font-lock
+   "panic!(\"abcd {0} efgh {1}\", foo, bar); { /* no-op */ }"
+   '("panic!" rust-builtin-formatting-macro-face
+     "\"abcd " font-lock-string-face
+     "{0}" rust-string-interpolation-face
+     " efgh " font-lock-string-face
+     "{1}" rust-string-interpolation-face
+     "\"" font-lock-string-face
+     "/* " font-lock-comment-delimiter-face
+     "no-op */" font-lock-comment-face))
+  ;; unreachable
+  (rust-test-font-lock
+   "unreachable!(\"abcd {0} efgh {1}\", foo, bar); { /* no-op */ }"
+   '("unreachable!" rust-builtin-formatting-macro-face
+     "\"abcd " font-lock-string-face
+     "{0}" rust-string-interpolation-face
+     " efgh " font-lock-string-face
+     "{1}" rust-string-interpolation-face
+     "\"" font-lock-string-face
+     "/* " font-lock-comment-delimiter-face
+     "no-op */" font-lock-comment-face))
+  ;; unimplemented
+  (rust-test-font-lock
+   "unimplemented!(\"abcd {0} efgh {1}\", foo, bar); { /* no-op */ }"
+   '("unimplemented!" rust-builtin-formatting-macro-face
+     "\"abcd " font-lock-string-face
+     "{0}" rust-string-interpolation-face
+     " efgh " font-lock-string-face
+     "{1}" rust-string-interpolation-face
+     "\"" font-lock-string-face
+     "/* " font-lock-comment-delimiter-face
+     "no-op */" font-lock-comment-face))
   ;; eprintln
   (rust-test-font-lock
    "eprintln!(\"abcd {0} efgh {1}\", foo, bar); { /* no-op */ }"
@@ -2238,7 +2282,7 @@ fn main() {
      "\"" font-lock-string-face
      "/* " font-lock-comment-delimiter-face
      "no-op */" font-lock-comment-face))
-  ;; print + raw string
+  ;; format + raw string
   (rust-test-font-lock
    "format!(r\"abcd {0} efgh {1}\", foo, bar); { /* no-op */ }"
    '("format!" rust-builtin-formatting-macro-face
@@ -2249,7 +2293,7 @@ fn main() {
      "\"" font-lock-string-face
      "/* " font-lock-comment-delimiter-face
      "no-op */" font-lock-comment-face))
-  ;; print + raw string with hash
+  ;; format + raw string with hash
   (rust-test-font-lock
    "format!(r#\"abcd {0} efgh {1}\"#, foo, bar); { /* no-op */ }"
    '("format!" rust-builtin-formatting-macro-face
@@ -2260,7 +2304,7 @@ fn main() {
      "\"#" font-lock-string-face
      "/* " font-lock-comment-delimiter-face
      "no-op */" font-lock-comment-face))
-  ;; print + raw string with two hashes
+  ;; format + raw string with two hashes
   (rust-test-font-lock
    "format!(r##\"abcd {0} efgh {1}\"##, foo, bar); { /* no-op */ }"
    '("format!" rust-builtin-formatting-macro-face
